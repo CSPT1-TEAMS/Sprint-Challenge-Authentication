@@ -13,13 +13,15 @@ const login = (req, res) => {
       res.status(422).json({ error: 'No user with that username in our DB' });
       return;
     }
-    user.checkPassword(password, (nonMatch, hashMatch) => {
+    user.checkPassword(password, isMatch => {
+
       // This is an example of using our User.method from our model.
-      if (nonMatch !== null) {
+      console.log('IS', isMatch)
+      if (isMatch !== true) {
         res.status(422).json({ error: 'passwords dont match' });
         return;
       }
-      if (hashMatch) {
+      if (isMatch) {
         const payload = {
           username: user.username
         }; // what will determine our payload.
@@ -27,7 +29,7 @@ const login = (req, res) => {
         res.json({ token }); // sends the token back to the client
       }
     });
-  });
+    });
 };
 
 module.exports = {
