@@ -24,12 +24,15 @@ const login = (req, res) => {
           username: user.username
         }; // what will determine our payload.
         const token = jwt.sign(payload, mysecret); // creates our JWT with a secret and a payload and a hash.
+        const tokenValue = localStorage.setItem('token', token);
         res.json({ token }); // sends the token back to the client
       }
     });
   });
 };
-
+const tokenValue = (req, res) => { localStorage.setItem('token', token);
+}
 module.exports = {
-  login
+  login,
+  tokenValue
 };
