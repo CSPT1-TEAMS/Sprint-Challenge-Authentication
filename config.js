@@ -1,4 +1,1 @@
-const mysecret = 'Why can’t banks keep secrets? There are too many tellers!';
-module.exports = {
-  mysecret
-};
+module.exports = { mysecret: 'How do you deal with a JavaScript bug? You console it!' }
