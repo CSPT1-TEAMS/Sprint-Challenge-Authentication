@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const SALT_ROUNDS = 11;
 
-const UserSchema = Schema({
+const UserSchema = new Schema({
   // create your user schema here.
   // username: required, unique and lowercase
   // password: required
@@ -38,9 +38,12 @@ UserSchema.methods.checkPassword = function(plainTextPW, callBack) {
   // Your controller will be responsible for sending the information here for password comparison
   // Once you have the user, you'll need to pass the encrypted pw and the plaintext pw to the compare function
   bcrypt.compare(plainTextPW, this.password, (err, success) => {
-    if (err) return callBack(err);
-    callBack(null, success);
+    if (err) {
+      return callBack(err);
+    }
+    return callBack(null, success);
   });
+    
 };
 
 // if you're really stuck with this at this point, you can reference this document.
