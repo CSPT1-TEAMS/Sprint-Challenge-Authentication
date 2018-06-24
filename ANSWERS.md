@@ -27,7 +27,9 @@
   pretty cool stuff. Word.
 
 - **JWT** stands for JSON Web Token. Per my understanding JWTs are used to verify that the data was sent
-  by an authentic sourse. A JWT is really just a string in the format of header.payload.signature. 
+  by an authentic sourse. A JWT is really just a string in the format of header.payload.signature. Based on
+  notes taken from what I've read about JWTs, the header and the payload are both encoded and both of those are
+  passed to 
 
 2.  What does bcrypt do in order to prevent attacks?
 
