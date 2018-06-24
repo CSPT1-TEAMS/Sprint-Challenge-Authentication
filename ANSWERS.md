@@ -26,6 +26,8 @@
   just what the hell that means, but I've checked out some diagrams on the Internet and it seems like some
   pretty cool stuff. Word.
 
+- **JWT** stands for JSON Web Token
+
 2.  What does bcrypt do in order to prevent attacks?
 
 3.  What are the three parts of the JSON Web Token?
