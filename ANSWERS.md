@@ -40,3 +40,9 @@
   make the hash more secure. Pretty cool stuff!
 
 3.  What are the three parts of the JSON Web Token?
+- **header.payload.signature** 
+-The header is just an object that specifies the type as JWT and specifies the hashing algorithm used to create
+ JWT signature.
+-The payload, also referred to as the claim, is the data stored inside the JWT.
+-The signature is computed using the header, the payload, and the secret key known to both the server and
+ the client.
