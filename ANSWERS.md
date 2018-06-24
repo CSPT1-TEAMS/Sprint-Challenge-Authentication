@@ -26,7 +26,8 @@
   just what the hell that means, but I've checked out some diagrams on the Internet and it seems like some
   pretty cool stuff. Word.
 
-- **JWT** stands for JSON Web Token
+- **JWT** stands for JSON Web Token. Per my understanding JWTs are used to verify that the data was sent
+  by an authentic sourse. A JWT is really just a string in the format of header.payload.signature. 
 
 2.  What does bcrypt do in order to prevent attacks?
 
