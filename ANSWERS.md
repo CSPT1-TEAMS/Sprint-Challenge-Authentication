@@ -13,7 +13,13 @@
   pairs, and are set with either JavaScript or by the server using an HTTP header. Cookies can be insecure 
   as users can easily manipulate their content. (One should always validate cookie data) Cookies are normally 
   used to preserve login state, where a username and special hash are sent from the client, and the server 
-  checks them against the database to determine access.
+  checks them against the database to determine access. Cookies are also used in **session** creation.
+
+- **Sessions** to me seem kind of similar to cookies in that some user-specific data gets stored on the client, 
+  but the similarity ends there; each user gets a session id which is then sent back to the server for 
+  validation. 
+
+- **bcrypt** 
 
 2.  What does bcrypt do in order to prevent attacks?
 
