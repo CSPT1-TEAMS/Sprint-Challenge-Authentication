@@ -6,7 +6,7 @@ import './jokes.css'
 class Jokes extends Component {
     state = {
         jokes: [],
-        loggedIn: false
+
     }
     componentWillMount() {
         const token = localStorage.getItem('token');
@@ -16,8 +16,7 @@ class Jokes extends Component {
             { headers: { Authorization:token } })
             .then(jokes => {
                 this.setState({ 
-                    jokes: jokes.data,
-                    loggedIn: true })
+                    jokes: jokes.data })
             })
             .catch(err => {
                 console.log(err);

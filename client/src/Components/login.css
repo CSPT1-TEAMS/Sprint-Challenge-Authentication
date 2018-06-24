@@ -1,0 +1,11 @@
+.input {
+    max-width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.button {
+    background-color: blue;
+    color: white;
+}

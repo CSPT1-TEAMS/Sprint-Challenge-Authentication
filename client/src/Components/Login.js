@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Input, Container } from "reactstrap";
 import axios from 'axios';
+import './login.css'
 
 class Login extends Component {
     state = {
@@ -26,15 +27,15 @@ class Login extends Component {
 
     render() {
         return (
-            <Container>
+            <Container className='container'>
                 <h5>Login</h5>
-                <Form inline onSubmit={ this.submitHandler }>
+                <Form onSubmit={ this.submitHandler }>
 
                     <Input className='input' type="username" name="username" id="exampleEmail" placeholder="username" onChange={ this.inputChange } />
 
                     <Input className='input' type="password" name="password" id="examplePassword" placeholder="password" onChange={ this.inputChange } />
 
-                    <Button>Submit</Button>
+                    <Button className='button'>Submit</Button>
 
                 </Form>
             </Container>

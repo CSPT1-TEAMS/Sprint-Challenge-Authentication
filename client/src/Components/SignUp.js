@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { Button, Form, Input, Container } from "reactstrap";
 
+const jwt = require('jsonwebtoken');
+const SECRET = 'SECRET COOKIE MONSTER'
+
+const makeToken = (user) => {
+    const payload = {
+        sub: user._id,
+        name: user.username,
+        race: user.race
+    }
+    const options = {
+        expiresIn: '24h'
+    }
+    return jwt.sign(payload, SECRET, options)
+}
+
 class SignUp extends Component {
     state = {
         username: "",
@@ -16,9 +31,9 @@ class SignUp extends Component {
         e.preventDefault();
         axios.post('http://localhost:5000/api/users', this.state)
             .then(user => {
-                // const token = makeToken(user);
-                // console.log('TOKEN', token);
-                // localStorage.setItem('token', token)
+                const token = makeToken(user);
+                console.log('TOKEN', token);
+                localStorage.setItem('token', token)
                 this.props.history.push('/jokes')
             })
             .catch(err => {
@@ -35,7 +50,7 @@ class SignUp extends Component {
                         <Input className='input' type="username" name="username" id="exampleUsername" placeholder="username" onChange={ this.inputChange } />
                         <Input className='input' type="password" name="password" id="examplePassword" placeholder="password" onChange={ this.inputChange } />
                     
-                        <Button className='input' type='submit'>Submit</Button>
+                        <Button className='button' type='submit'>Submit</Button>
                     </Form>
                 </div>
             </Container>
