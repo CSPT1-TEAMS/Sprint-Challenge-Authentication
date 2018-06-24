@@ -29,8 +29,14 @@
 - **JWT** stands for JSON Web Token. Per my understanding JWTs are used to verify that the data was sent
   by an authentic sourse. A JWT is really just a string in the format of header.payload.signature. Based on
   notes taken from what I've read about JWTs, the header and the payload are both encoded and both of those are
-  passed to a hashing function which generates a signature based on the header and the payload. 
+  passed to a hashing function which generates a signature based on the header and the payload plus a secret key
+  that both the server and the client have. The signature is used to authenticate the user. My understanding 
+  gets fuzzy after that.
 
 2.  What does bcrypt do in order to prevent attacks?
+- Cryptographic password hashes can be susceptible to brute-force attacks and hash-collision attacks, or two 
+  different strings producing the same cryptographic hash. bcrypt makes brute-force attacks slower and minimizes
+  hash collision using a technique called *key stretching*. bcrypt uses *x* amount of rounds for encrypting to 
+  make the hash more secure. Pretty cool stuff!
 
 3.  What are the three parts of the JSON Web Token?
