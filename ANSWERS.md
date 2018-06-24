@@ -19,7 +19,8 @@
   but the similarity ends there; each user gets a session id which is then sent back to the server for 
   validation. 
 
-- **bcrypt** 
+- **bcrypt** To my understanding bcrypt is just a password-hashing function. It was designed by Niels Provos 
+  and David Mazieres and is based on the Blowfish cipher
 
 2.  What does bcrypt do in order to prevent attacks?
 
