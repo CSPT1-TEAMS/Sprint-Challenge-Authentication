@@ -20,7 +20,11 @@
   validation. 
 
 - **bcrypt** To my understanding bcrypt is just a password-hashing function. It was designed by Niels Provos 
-  and David Mazieres and is based on the Blowfish cipher
+  and David Mazieres and is based on the Blowfish cipher--which is really cool by the way. bcrypt uses 
+  symmetrical encryption; the same key is used for both encryption and decryption. The Blowfish cipher, 
+  as its name suggests, uses variable key lengths from 32 bits up to 448 bits. I don't completely understand
+  just what the hell that means, but I've checked out some diagrams on the Internet and it seems like some
+  pretty cool stuff. Word.
 
 2.  What does bcrypt do in order to prevent attacks?
 
