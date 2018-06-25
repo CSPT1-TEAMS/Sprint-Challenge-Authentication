@@ -7,7 +7,14 @@ const createUser = (req, res) => {
   const { username, password } = req.body
 
   // our pre save hook should kick in here saving this user to the DB with an encrypted password.
-  return ({ userSchema }.pre, username, password)
+  const user = new User({user, password})
+  user.save()
+    .then((result) => {
+      res.status(200).send(result)
+    })
+    .catch((err) => {
+      res.status(500).send(err)
+    })
 }
 
 module.exports = {

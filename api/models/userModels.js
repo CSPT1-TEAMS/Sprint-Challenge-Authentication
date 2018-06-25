@@ -45,6 +45,12 @@ UserSchema.methods.checkPassword = function (plainTextPW, callBack) {
   // if you're really stuck with this at this point, you can reference this document.
 // https://github.com/LambdaSchool/Auth-JWT/blob/master/models/index.js This is what we're going for here.
 
+  bcrypt.compare(plainTextPW, this.password, (err, goodPW) => {
+    if (err) {
+      return callBack(err)
+    }
+    return callBack(null, goodPW)
+})
 }
 
 module.exports = mongoose.model('./api/controllers/User', UserSchema)
