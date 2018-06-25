@@ -1,0 +1,11 @@
+ul {
+    list-style-type: none;
+}
+
+div {
+    padding: 3%;
+}
+
+#jokes {
+    border-bottom: 2px solid grey;
+}
