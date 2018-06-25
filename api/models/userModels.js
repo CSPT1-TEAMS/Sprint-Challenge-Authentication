@@ -50,7 +50,7 @@ UserSchema.methods.checkPassword = function (plainTextPW, callBack) {
       return callBack(err)
     }
     return callBack(null, goodPW)
-})
+  })
 }
 
 module.exports = mongoose.model('./api/controllers/User', UserSchema)

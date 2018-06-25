@@ -1,6 +1,6 @@
 const User = require('../models/userModels')
-const bcrypt = require('bcrypt')
-const { userSchema } = require('../models/usermodels')
+// const bcrypt = require('bcrypt')
+// const { userSchema } = require('../models/usermodels')
 
 // create user takes in the username and password and saves a user.
 const createUser = (req, res) => {
