@@ -6,7 +6,9 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/auth-users', {
   useMongoClient: true
 })
-
-server.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-})
+  .then(() => {
+    server.listen(port, () => {
+      console.log(`Server listening on port ${port}`)
+    })
+  })
+  .catch((error) => console.log(error.message))
