@@ -43,13 +43,8 @@ UserSchema.methods.checkPassword = function(plainText, callBack) {
   // Your controller will be responsible for sending the information here for password comparison
   // Once you have the user, you'll need to pass the encrypted pw and the plaintext pw to the compare function
   bcrypt.compare(plainText, this.password)
-    .then(match => {
-      callback(match)
-    })
-    .catch(err => {
-      // I want a better error handler
-      console.log(err);
-    })
+    .then(match => callBack(null, match))
+    .catch(err => callBack(err, null))
 };
 
 module.exports = mongoose.model('User', UserSchema);
