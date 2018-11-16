@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-const Schema = mongoose.Schema
+const { Schema } = mongoose
 
 const SALT_ROUNDS = 11
 
@@ -17,24 +17,31 @@ const UserSchema = Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
 })
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function (next) {
   // https://github.com/kelektiv/node.bcrypt.js#usage
   // Fill this middleware in with the Proper password encrypting, bcrypt.hash()
   // if there is an error here you'll need to handle it by calling next(err)
   // Once the password is encrypted, call next() so that your userController and create a user
-  bcrypt.genSalt(SALT_ROUNDS, (err, salt) => {
-    bcrypt.hash(this.password, salt)
-      .then(hash => {
-        if (err) throw new Error(err)
-        else this.password = hash
-        return next()
-      })
-      .catch(err => next(err))
+
+  bcrypt.hash(this.password, SALT_ROUNDS, function (err, hash) {
+    if (err) next(err)
+    this.password = hash
+    next()
   })
 })
+
+// bcrypt.genSalt(SALT_ROUNDS, (err, salt) => {
+//   bcrypt.hash(this.password, salt)
+//     .then(hash => {
+//       if (err) throw new Error(err)
+//       else this.password = hash
+//       return next()
+//     })
+//     .catch(err => next(err))
+// })
 
 UserSchema.methods.checkPassword = function (plainTextPW, cb) {
   // https://github.com/kelektiv/node.bcrypt.js#usage
@@ -45,9 +52,10 @@ UserSchema.methods.checkPassword = function (plainTextPW, cb) {
   console.log('HASHED PASSWORD:', this.password)
   console.log('PLAINTEXT PASSWORD:', plainTextPW)
 
-  bcrypt.compare(plainTextPW, this.password)
-    .then(match => cb(match))
-    .catch(mismatch => console.log(mismatch))
+  return bcrypt.compare(plainTextPW, this.password, function (err, res) {
+    if (err) return cb(err)
+    return cb(null, match)
+  })
 }
 
 module.exports = mongoose.model('User', UserSchema)
