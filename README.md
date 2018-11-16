@@ -81,3 +81,4 @@ Don't fret or get anxious. This is a no-pressure assessment designed to help us 
 - In order to play around with a client server app, you'll need to set up your `cors` inside of `server.js` properly.
 - Using React and React Router, create a `Sign Up`, `Sign In` and `Jokes` page.
 - Once you have the functionality down, you'll be able to style it up a bit and play around with the jokes etc.
+
