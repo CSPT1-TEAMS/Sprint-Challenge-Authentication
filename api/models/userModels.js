@@ -35,13 +35,3 @@ UserSchema.methods.checkPassword = function (plainTextPW, cb) {
 }
 
 module.exports = mongoose.model('User', UserSchema)
-
-// bcrypt.genSalt(SALT_ROUNDS, (err, salt) => {
-//   bcrypt.hash(this.password, salt)
-//     .then(hash => {
-//       if (err) throw new Error(err)
-//       else this.password = hash
-//       return next()
-//     })
-//     .catch(err => next(err))
-// })
