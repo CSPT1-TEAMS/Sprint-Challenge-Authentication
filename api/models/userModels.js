@@ -18,17 +18,23 @@ const UserSchema = Schema({
 })
 
 UserSchema.pre('save', function (next) {
-  // https://github.com/kelektiv/node.bcrypt.js#usage
-  // Fill this middleware in with the Proper password encrypting, bcrypt.hash()
-  // if there is an error here you'll need to handle it by calling next(err)
-  // Once the password is encrypted, call next() so that your userController and create a user
-
-  bcrypt.hash(this.password, SALT_ROUNDS, function (err, hash) {
-    if (err) next(err)
-    this.password = hash
-    next()
-  })
+  bcrypt.hash(this.password, SALT_ROUNDS)
+    .then(hash => {
+      this.password = hash
+      // console.log('hashed password:', hash)
+      next()
+    })
+    .catch(err => next(err))
 })
+
+UserSchema.methods.checkPassword = function (plainTextPW, cb) {
+  return bcrypt.compare(plainTextPW, this.password, function (err, match) {
+    if (err) return cb(err)
+    cb(null, match)
+  })
+}
+
+module.exports = mongoose.model('User', UserSchema)
 
 // bcrypt.genSalt(SALT_ROUNDS, (err, salt) => {
 //   bcrypt.hash(this.password, salt)
@@ -39,20 +45,3 @@ UserSchema.pre('save', function (next) {
 //     })
 //     .catch(err => next(err))
 // })
-
-UserSchema.methods.checkPassword = function (plainTextPW, cb) {
-  // https://github.com/kelektiv/node.bcrypt.js#usage
-  // Fill this method in with the Proper password comparing, bcrypt.compare()
-  // Your controller will be responsible for sending the information here for password comparison
-  // Once you have the user, you'll need to pass the encrypted pw and the plaintext pw to the compare function
-
-  console.log('HASHED PASSWORD:', this.password)
-  console.log('PLAINTEXT PASSWORD:', plainTextPW)
-
-  return bcrypt.compare(plainTextPW, this.password, function (err, res) {
-    if (err) return cb(err)
-    return cb(null, match)
-  })
-}
-
-module.exports = mongoose.model('User', UserSchema)
